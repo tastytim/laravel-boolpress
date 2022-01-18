@@ -15,7 +15,7 @@
                     <ul>
                         <li>{{ Auth::user()->name}}</li>
                         <li>{{ Auth::user()->email}}</li>
-                        <li>{{ Auth::user()->email_verified_at}}</li>
+                        <li><a href="{{route('admin.users.index')}}">Users</a></li>
                     </ul>
                 </div>
             </div>
