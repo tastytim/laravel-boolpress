@@ -24,5 +24,6 @@
     </div>
 <script src="{{ asset('js/front.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+@include('partials.scripts')
 </body>
 </html>
