@@ -31,6 +31,8 @@
                         </form>
                         <a class="dropdown-item" href="{{route('admin.home')}}">Profile
                         </a>
+                        <a class="dropdown-item" href="{{route('admin.posts.index')}}">Posts
+                        </a>
                     </div>
                 </li>
             </ul>

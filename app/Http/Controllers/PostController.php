@@ -61,28 +61,5 @@ class PostController extends Controller
     }
 
 
-    public function edit($id){
-      
-  }
 
-
-
-  public function update(Request $request, $id){
-      
-  }
-
-
-
-
-  public function show(Post $post){
-    
-    
-      
-  }
-
-
-
-  public function destroy($id){
-      
-  }
 }
