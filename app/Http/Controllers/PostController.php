@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -57,4 +59,30 @@ class PostController extends Controller
 
         return $postsList;
     }
+
+
+    public function edit($id){
+      
+  }
+
+
+
+  public function update(Request $request, $id){
+      
+  }
+
+
+
+
+  public function show(Post $post){
+    
+    
+      
+  }
+
+
+
+  public function destroy($id){
+      
+  }
 }

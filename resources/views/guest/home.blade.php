@@ -20,10 +20,9 @@
     </header>
 
     <div id="root">
-        <main class="py-4">
-            <App></App>
-        </main>
+        
     </div>
 <script src="{{ asset('js/front.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
