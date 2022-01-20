@@ -1961,7 +1961,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Post',
   props: {
@@ -2490,28 +2489,25 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-body" }, [
+      _c("img", { staticClass: "width-100", attrs: { src: _vm.post.thumb } }),
+      _vm._v(" "),
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.post.title))]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
         _vm._v(" " + _vm._s(_vm.post.body) + " "),
       ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(" " + _vm._s(_vm.post.body) + " "),
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v("Categoria - " + _vm._s(_vm.post.category.name)),
+      ]),
     ]),
-    _vm._v(" "),
-    _vm._m(0),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-        _vm._v("Continua a leggere"),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
