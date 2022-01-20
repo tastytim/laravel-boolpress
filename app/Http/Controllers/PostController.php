@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Validator;
@@ -9,9 +10,11 @@ use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
     public function index(){
+
+        // $postsPublicList = Post::all();
+
         $postsList = [
             0 => [
-              'userId' => 1,
               'id' => 1,
               'title' => 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
               'body' => 'quia et suscipit
@@ -20,7 +23,6 @@ class PostController extends Controller
           nostrum rerum est autem sunt rem eveniet architecto',
             ],
             1 => [
-              'userId' => 1,
               'id' => 2,
               'title' => 'qui est esse',
               'body' => 'est rerum tempore vitae
@@ -29,7 +31,6 @@ class PostController extends Controller
           qui aperiam non debitis possimus qui neque nisi nulla',
             ],
             2 => [
-              'userId' => 1,
               'id' => 3,
               'title' => 'ea molestias quasi exercitationem repellat qui ipsa sit aut',
               'body' => 'et iusto sed quo iure
@@ -38,7 +39,6 @@ class PostController extends Controller
           molestiae porro eius odio et labore et velit aut',
             ],
             3 => [
-              'userId' => 1,
               'id' => 4,
               'title' => 'eum et est occaecati',
               'body' => 'ullam et saepe reiciendis voluptatem adipisci
@@ -47,7 +47,6 @@ class PostController extends Controller
           quis sunt voluptatem rerum illo velit',
             ],
             4 => [
-              'userId' => 1,
               'id' => 5,
               'title' => 'nesciunt quas odio',
               'body' => 'repudiandae veniam quaerat sunt sed
@@ -56,7 +55,9 @@ class PostController extends Controller
           est aut tenetur dolor neque',
             ],
         ];
-
+ 
+        
+        // $postsList = array_merge($postsAxiosList, $postsPublicList);
         return $postsList;
     }
 

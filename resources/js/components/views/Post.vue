@@ -5,7 +5,7 @@
     <p class="card-text"> {{post.body}} </p>
   </div>
   <div class="card-body">
-    <a href="{{route()}}" class="card-link">Continua a leggere</a>
+    <a href="#" class="card-link">Continua a leggere</a>
     
   </div>
 </div>

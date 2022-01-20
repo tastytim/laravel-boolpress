@@ -72,4 +72,10 @@ class PostController extends Controller
     {
         return view('admin.posts.create');
     }
+
+    public function getAll()
+    {
+        
+        return Post::all();
+    }
 }
