@@ -7,6 +7,7 @@
         <img class="width-100 heiht-50" src="{{$post->thumb}}">
             <h2> {{$post->title}}</h2>
             <div>{{$post->body}}</div>
+            <div>{{$post->category_id}}</div>
             <form class="d-flex-inline mx-2" action="{{ route("admin.posts.destroy", $post->id) }}" method="post" class="form">
                 @csrf
                 @method('delete')

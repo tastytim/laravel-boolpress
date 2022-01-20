@@ -22,6 +22,14 @@
                 <input type="text" class="form-control" name="thumb" id="thumb">
 
             </div>
+            <div>
+            <label for="category_id" class="form-label">Category</label>
+                <select name="category_id" class="form-control">
+                    @foreach($categories as $key)
+                         <option value="{{$key->id}}">{{$key->name}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div>
@@ -29,6 +37,10 @@
         </div>
 
     </form>
-
+  <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+  bkLib.onDomLoaded(nicEditors.allTextAreas);
+</script>
 </div>
 @endsection

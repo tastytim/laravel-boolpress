@@ -17,6 +17,14 @@
             <textarea rows="10" type="text" class="form-control" name="body" id="body" value="{{$post->body}}"> 
             </textarea>
         </div>
+        <div>
+            <label for="category_id" class="form-label">Category</label>
+                <select name="category_id" class="form-control">
+                    @foreach($categories as $key)
+                         <option value="{{$key->id}}">{{$key->name}}</option>
+                    @endforeach
+                </select>
+            </div>
     </div>
     <div>
         <button class="btn btn-primary" type="submit">Save</button>
