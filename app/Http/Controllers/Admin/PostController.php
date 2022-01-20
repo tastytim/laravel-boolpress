@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $postList = Post::all();
+        $postList = Post::where("user_id", Auth::user()->id)->get();
         return view("admin.posts.home", compact('postList'));
     }
 
@@ -53,6 +54,8 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+    
         $request->validate([
             "title" => "required",
             "body" => "required"
@@ -61,6 +64,7 @@ class PostController extends Controller
         $data = $request->all();
         $post = new Post();
         $post->fill($data);
+        $post->user_id = Auth::user()->id;
         $post->save();
 
         return redirect()->route("admin.posts.index");
@@ -73,9 +77,4 @@ class PostController extends Controller
         return view('admin.posts.create');
     }
 
-    public function getAll()
-    {
-        
-        return Post::all();
-    }
 }
