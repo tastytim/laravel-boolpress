@@ -12,20 +12,21 @@
             <div>Categoria</div>
             <h3>{{$post->category->name}}</h3>
             <div class="d-flex">
-            @foreach($post->tags as $key)
-            <div class="mr-2" >
-                <label class="badge bg-dark text-white">{{$key->name}}</label>
+                @foreach($post->tags as $key)
+                <div class="mr-2">
+                    <label class="badge bg-dark text-white">{{$key->name}}</label>
+                </div>
+                @endforeach
             </div>
-            @endforeach
-            </div>
-            
-            <form class="d-flex mx-2" action="{{ route("admin.posts.destroy", $post->id) }}" method="post" class="form">
-                @csrf
-                @method('delete')
 
-            </form>
-            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-            <button class="btn btn-secondary "><a href="{{route('admin.posts.edit', $post->id)}}">Edit</a></button>
+            <div class="d-flex">
+                <form for="delete" class="d-flex " action="{{ route("admin.posts.destroy", $post->id) }}" method="post" class="form">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+                <button class="btn btn-secondary ml-2"><a href="{{route('admin.posts.edit', $post->id)}}">Edit</a></button>
+            </div>
         </div>
     </div>
 </div>

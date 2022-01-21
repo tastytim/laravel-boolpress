@@ -19,39 +19,43 @@ class PostController extends Controller
     }
 
 
-    public function edit(Post $post){
+    public function edit(Post $post)
+    {
         $categories = Category::all();
         $tags = Tag::all();
         return view('admin.posts.edit', [
-            'post'=> $post,
-            'categories'=> $categories,
-            'tags'=> $tags
+            'post' => $post,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
 
 
-    public function update(Request $request, Post $post){
+    public function update(Request $request, Post $post)
+    {
         $data = $request->all();
-        Validator::make($data,[
+        Validator::make($data, [
             "title" => "min:4",
         ])->validate();
         $post->update($data);
         $post->tags()->sync($data["tags"]);
-        return redirect()->route("admin.posts.show", $post->id)->with("msg","Updated post successfully" );
+        return redirect()->route("admin.posts.show", $post->id)->with("msg", "Updated post successfully");
     }
 
 
-    public function show(Post $post){
+    public function show(Post $post)
+    {
         return view('admin.posts.show', compact('post'));
     }
 
 
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $post = Post::findOrFail($id);
+        $post->tags()->detach();
         $post->delete();
-        $post->tags()->sync($id);
         return redirect()->route('admin.posts.index');
     }
 
@@ -82,5 +86,4 @@ class PostController extends Controller
         //     "tags"=>$tags
         // ]);
     }
-
 }
