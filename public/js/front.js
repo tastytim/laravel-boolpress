@@ -1961,8 +1961,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Post',
+  name: "Post",
   props: {
     post: {
       type: Object,
@@ -2489,14 +2503,21 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("img", { staticClass: "width-100", attrs: { src: _vm.post.thumb } }),
+      _c("img", {
+        staticClass: "width-100",
+        attrs: {
+          src: _vm.post.thumb,
+          onError:
+            "this.src = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
+        },
+      }),
       _vm._v(" "),
       _c("h5", { staticClass: "card-title" }, [
         _vm._v("Titolo - " + _vm._s(_vm.post.title)),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
-        _vm._v("Testo - " + _vm._s(_vm.post.body) + " "),
+        _vm._v("Testo - " + _vm._s(_vm.post.body)),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
@@ -2506,6 +2527,23 @@ var render = function () {
       _c("p", { staticClass: "card-text" }, [
         _vm._v("Scritto da - " + _vm._s(_vm.post.user.name)),
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "d-flex" },
+        _vm._l(_vm.post.tags, function (item) {
+          return _c(
+            "div",
+            { key: item.id, staticClass: "badge bg-dark text-white mr-3" },
+            [
+              _vm._v(
+                "\n                " + _vm._s(item.name) + "\n            "
+              ),
+            ]
+          )
+        }),
+        0
+      ),
     ]),
   ])
 }
