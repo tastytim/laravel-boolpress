@@ -36,6 +36,14 @@
                 </select>
             </div>
     </div>
+    <div class="d-flex">
+            @foreach($tags as $key)
+            <div class="mr-2">
+                <label>{{$key->name}}</label>
+                <input name="tags[]" type="checkbox" value="{{$key->id}}" @if ($post->tags->contains($key))? '' : checked }} @endif>
+            </div>
+            @endforeach
+        </div>
     <div>
         <button class="btn btn-primary" type="submit">Save</button>
     </div>
