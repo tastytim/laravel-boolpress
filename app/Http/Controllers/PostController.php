@@ -29,7 +29,7 @@ class PostController extends Controller
 
     // ];
 
-    $postsPublicList = Post::with("category")->get();
+    $postsPublicList = Post::with("category", "user")->get();
 
     return $postsPublicList;
   }

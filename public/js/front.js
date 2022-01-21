@@ -2491,18 +2491,20 @@ var render = function () {
     _c("div", { staticClass: "card-body" }, [
       _c("img", { staticClass: "width-100", attrs: { src: _vm.post.thumb } }),
       _vm._v(" "),
-      _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.post.title))]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v(" " + _vm._s(_vm.post.body) + " "),
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Titolo - " + _vm._s(_vm.post.title)),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
-        _vm._v(" " + _vm._s(_vm.post.body) + " "),
+        _vm._v("Testo - " + _vm._s(_vm.post.body) + " "),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
         _vm._v("Categoria - " + _vm._s(_vm.post.category.name)),
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v("Scritto da - " + _vm._s(_vm.post.user.name)),
       ]),
     ]),
   ])
