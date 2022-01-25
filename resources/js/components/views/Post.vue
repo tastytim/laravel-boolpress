@@ -1,6 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body">
+            <a :href="'admin/posts/' + post.id">
             <img
                 class="width-100"
                 :src="post.thumb"
@@ -20,6 +21,7 @@
                     {{ item.name }}
                 </div>
             </div>
+            </a>
         </div>
     </div>
 </template>

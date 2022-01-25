@@ -1917,6 +1917,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1926,15 +1946,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      postsData: []
+      postsData: [],
+      currentPage: 1,
+      lastPage: null
     };
   },
-  mounted: function mounted() {
-    var _this = this;
+  methods: {
+    getDates: function getDates() {
+      var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/posts").then(function (resp) {
-      _this.postsData = resp.data;
-    });
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/posts?page=" + page).then(function (resp) {
+        _this.postsData = resp.data.data;
+        _this.currentPage = resp.data.current_page;
+        _this.lastPage = resp.data.last_page;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getDates();
   }
 });
 
@@ -1949,6 +1979,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2470,14 +2502,67 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container mt-3" },
-    _vm._l(_vm.postsData, function (post) {
-      return _c("Post", { key: post.id, attrs: { post: post } })
-    }),
-    1
-  )
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "container mt-3" },
+      _vm._l(_vm.postsData, function (post) {
+        return _c("Post", { key: post.id, attrs: { post: post } })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row py-5 d-flex justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "pagination" },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "page-link",
+              on: {
+                click: function ($event) {
+                  return _vm.getDates(_vm.currentPage - 1)
+                },
+              },
+            },
+            [_vm._v("\n                Prev\n            ")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.lastPage, function (page) {
+            return _c(
+              "button",
+              {
+                key: page,
+                staticClass: "page-link",
+                on: {
+                  click: function ($event) {
+                    return _vm.getDates(page)
+                  },
+                },
+              },
+              [_vm._v("\n                " + _vm._s(page) + "\n            ")]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "page-link",
+              on: {
+                click: function ($event) {
+                  return _vm.getDates(_vm.currentPage + 1)
+                },
+              },
+            },
+            [_vm._v("\n                Next\n            ")]
+          ),
+        ],
+        2
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2503,47 +2588,49 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("img", {
-        staticClass: "width-100",
-        attrs: {
-          src: _vm.post.thumb,
-          onError:
-            "this.src = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
-        },
-      }),
-      _vm._v(" "),
-      _c("h5", { staticClass: "card-title" }, [
-        _vm._v("Titolo - " + _vm._s(_vm.post.title)),
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v("Testo - " + _vm._s(_vm.post.body)),
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v("Categoria - " + _vm._s(_vm.post.category.name)),
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v("Scritto da - " + _vm._s(_vm.post.user.name)),
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "d-flex" },
-        _vm._l(_vm.post.tags, function (item) {
-          return _c(
-            "div",
-            { key: item.id, staticClass: "badge bg-dark text-white mr-3" },
-            [
-              _vm._v(
-                "\n                " + _vm._s(item.name) + "\n            "
-              ),
-            ]
-          )
+      _c("a", { attrs: { href: "admin/posts/" + _vm.post.id } }, [
+        _c("img", {
+          staticClass: "width-100",
+          attrs: {
+            src: _vm.post.thumb,
+            onError:
+              "this.src = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
+          },
         }),
-        0
-      ),
+        _vm._v(" "),
+        _c("h5", { staticClass: "card-title" }, [
+          _vm._v("Titolo - " + _vm._s(_vm.post.title)),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v("Testo - " + _vm._s(_vm.post.body)),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v("Categoria - " + _vm._s(_vm.post.category.name)),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v("Scritto da - " + _vm._s(_vm.post.user.name)),
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "d-flex" },
+          _vm._l(_vm.post.tags, function (item) {
+            return _c(
+              "div",
+              { key: item.id, staticClass: "badge bg-dark text-white mr-3" },
+              [
+                _vm._v(
+                  "\n                " + _vm._s(item.name) + "\n            "
+                ),
+              ]
+            )
+          }),
+          0
+        ),
+      ]),
     ]),
   ])
 }
