@@ -27,6 +27,10 @@
 <script>
 import Post from "../views/Post.vue";
 import axios from "axios";
+import * as dayjs from 'dayjs'
+
+
+
 export default {
     name: "App",
     components: {
@@ -54,6 +58,7 @@ export default {
     mounted() {
         this.getDates();
     },
+   
 };
 </script>
 
