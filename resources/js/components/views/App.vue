@@ -5,7 +5,7 @@
         </div>
         <div class="row py-5 d-flex justify-content-center">
             <div class="pagination">
-                <button class="page-link"   @click="getDates(currentPage - 1)">
+                <button class="page-link"  v-if="currentPage != 1" @click="getDates(currentPage --)">
                     Prev
                 </button>
                 <button
@@ -16,7 +16,7 @@
                 >
                     {{ page }}
                 </button>
-                <button class="page-link" @click="getDates(currentPage + 1)">
+                <button class="page-link" v-if="currentPage != lastPage" @click="getDates(currentPage ++)">
                     Next
                 </button>
             </div>
@@ -43,6 +43,7 @@ export default {
     methods: {
         getDates(page = 1) {
             axios.get("/api/posts?page=" + page).then((resp) => {
+
                 this.postsData = resp.data.data;
                 this.currentPage = resp.data.current_page;
                 this.lastPage = resp.data.last_page;

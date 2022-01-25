@@ -2517,18 +2517,20 @@ var render = function () {
         "div",
         { staticClass: "pagination" },
         [
-          _c(
-            "button",
-            {
-              staticClass: "page-link",
-              on: {
-                click: function ($event) {
-                  return _vm.getDates(_vm.currentPage - 1)
+          _vm.currentPage != 1
+            ? _c(
+                "button",
+                {
+                  staticClass: "page-link",
+                  on: {
+                    click: function ($event) {
+                      return _vm.getDates(_vm.currentPage--)
+                    },
+                  },
                 },
-              },
-            },
-            [_vm._v("\n                Prev\n            ")]
-          ),
+                [_vm._v("\n                Prev\n            ")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.lastPage, function (page) {
             return _c(
@@ -2546,18 +2548,20 @@ var render = function () {
             )
           }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "page-link",
-              on: {
-                click: function ($event) {
-                  return _vm.getDates(_vm.currentPage + 1)
+          _vm.currentPage != _vm.lastPage
+            ? _c(
+                "button",
+                {
+                  staticClass: "page-link",
+                  on: {
+                    click: function ($event) {
+                      return _vm.getDates(_vm.currentPage++)
+                    },
+                  },
                 },
-              },
-            },
-            [_vm._v("\n                Next\n            ")]
-          ),
+                [_vm._v("\n                Next\n            ")]
+              )
+            : _vm._e(),
         ],
         2
       ),
