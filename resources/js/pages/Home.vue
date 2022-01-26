@@ -5,7 +5,11 @@
         </div>
         <div class="row py-5 d-flex justify-content-center">
             <div class="pagination">
-                <button class="page-link"  v-if="currentPage != 1" @click="getDates(currentPage --)">
+                <button
+                    class="page-link"
+                    v-if="currentPage != 1"
+                    @click="getDates(currentPage - 1)"
+                >
                     Prev
                 </button>
                 <button
@@ -16,7 +20,11 @@
                 >
                     {{ page }}
                 </button>
-                <button class="page-link" v-if="currentPage != lastPage" @click="getDates(currentPage ++)">
+                <button
+                    class="page-link"
+                    v-if="currentPage != lastPage"
+                    @click="getDates(currentPage + 1)"
+                >
                     Next
                 </button>
             </div>
@@ -25,14 +33,12 @@
 </template>
 
 <script>
-import Post from "../views/Post.vue";
+import Post from '../components/Post.vue'
 import axios from "axios";
-import * as dayjs from 'dayjs'
-
-
+import * as dayjs from "dayjs";
 
 export default {
-    name: "App",
+    name: "Home",
     components: {
         Post,
     },
@@ -47,7 +53,6 @@ export default {
     methods: {
         getDates(page = 1) {
             axios.get("/api/posts?page=" + page).then((resp) => {
-
                 this.postsData = resp.data.data;
                 this.currentPage = resp.data.current_page;
                 this.lastPage = resp.data.last_page;
@@ -58,8 +63,9 @@ export default {
     mounted() {
         this.getDates();
     },
-   
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

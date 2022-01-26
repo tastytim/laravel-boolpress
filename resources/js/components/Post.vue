@@ -29,8 +29,6 @@
     </div>
 </template>
 
-import
-
 <script>
 export default {
     name: "Post",
