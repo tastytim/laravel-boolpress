@@ -34,8 +34,6 @@
 
 <script>
 import Post from '../components/Post.vue'
-import axios from "axios";
-import * as dayjs from "dayjs";
 
 export default {
     name: "Home",

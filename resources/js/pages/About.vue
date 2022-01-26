@@ -1,17 +1,12 @@
 <template>
-    <div>
-        About
+    <div class="container">
+        About Vue
     </div>
 </template>
 
-
-
 <script>
-export default {
-    name:'About'
-};
+
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

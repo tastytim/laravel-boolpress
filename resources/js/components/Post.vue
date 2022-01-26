@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <a :href="'admin/posts/' + post.id">
+            <router-link :to="{name:'posts.show', params:{slug:post.slug}}">
                 <img
                     class="width-100"
                     :src="post.thumb"
@@ -24,7 +24,7 @@
                         {{ item.name }}
                     </div>
                 </div>
-            </a>
+            </router-link>
         </div>
     </div>
 </template>

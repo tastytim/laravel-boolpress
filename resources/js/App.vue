@@ -1,18 +1,17 @@
 <template>
     <div>
+        <Navbar></Navbar>
         <router-view></router-view>
+      
     </div>
+    
 </template>
-
 <script>
-
-import axios from "axios";
-import * as dayjs from "dayjs";
-
+import Navbar from './components/Navbar.vue'
 export default {
     name: "App",
     components: {
-        
+      Navbar
     },
 };
 </script>

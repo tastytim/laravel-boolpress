@@ -1,12 +1,15 @@
 window.Vue = require('vue');
 window.dayjs = require('dayjs');
-
-Vue.component('App', require('./App.vue'));
+window.axios = require('axios');
 
 import Vue from 'vue';
 import App from '../js/App.vue';
-import router from '../js/router.js';
+import router from '../js/router';
 
+
+
+
+Vue.component('App', require('../js/App.vue'));
 
 const app = new Vue(
     {
