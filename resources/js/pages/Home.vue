@@ -1,5 +1,16 @@
 <template>
     <div class="container">
+        <div class="progress">
+            <div
+                v-if="loading"
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 100%"
+            ></div>
+        </div>
         <div class="row">
             <div class="col-8">
                 <div class="container mt-3">
@@ -34,14 +45,16 @@
                 </div>
             </div>
             <div class="col-4">
-                  
                 <h1>Categories</h1>
 
                 <div v-for="category in categoriesData" :key="category.id">
-                    <router-link :to="{
-                  name: 'category.show',
-                  params: { category: category.id },
-                }">{{category.name}}</router-link>
+                    <router-link
+                        :to="{
+                            name: 'category.show',
+                            params: { category: category.id },
+                        }"
+                        >{{ category.name }}</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -62,6 +75,7 @@ export default {
             currentPage: 1,
             lastPage: null,
             categoriesData: null,
+            loading: false,
         };
     },
 
@@ -74,11 +88,13 @@ export default {
             });
         },
 
-        getCategories(){
+        getCategories() {
+            this.loading = true;
             axios.get("/api/categories").then((resp) => {
                 this.categoriesData = resp.data;
+                this.loading = false;
             });
-        }
+        },
     },
 
     mounted() {

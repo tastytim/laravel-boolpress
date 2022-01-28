@@ -2236,6 +2236,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
@@ -2247,7 +2260,8 @@ __webpack_require__.r(__webpack_exports__);
       postsData: [],
       currentPage: 1,
       lastPage: null,
-      categoriesData: null
+      categoriesData: null,
+      loading: false
     };
   },
   methods: {
@@ -2264,8 +2278,10 @@ __webpack_require__.r(__webpack_exports__);
     getCategories: function getCategories() {
       var _this2 = this;
 
+      this.loading = true;
       axios.get("/api/categories").then(function (resp) {
         _this2.categoriesData = resp.data;
+        _this2.loading = false;
       });
     }
   },
@@ -3171,6 +3187,22 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "progress" }, [
+      _vm.loading
+        ? _c("div", {
+            staticClass:
+              "progress-bar progress-bar-striped progress-bar-animated",
+            staticStyle: { width: "100%" },
+            attrs: {
+              role: "progressbar",
+              "aria-valuenow": "75",
+              "aria-valuemin": "0",
+              "aria-valuemax": "100",
+            },
+          })
+        : _vm._e(),
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-8" }, [
         _c(
