@@ -34,8 +34,15 @@
                 </div>
             </div>
             <div class="col-4">
-
+                  
                 <h1>Categories</h1>
+
+                <div v-for="category in categoriesData" :key="category.id">
+                    <router-link :to="{
+                  name: 'category.show',
+                  params: { category: category.id },
+                }">{{category.name}}</router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -54,6 +61,7 @@ export default {
             postsData: [],
             currentPage: 1,
             lastPage: null,
+            categoriesData: null,
         };
     },
 
@@ -65,10 +73,17 @@ export default {
                 this.lastPage = resp.data.last_page;
             });
         },
+
+        getCategories(){
+            axios.get("/api/categories").then((resp) => {
+                this.categoriesData = resp.data;
+            });
+        }
     },
 
     mounted() {
         this.getDates();
+        this.getCategories();
     },
 };
 </script>
