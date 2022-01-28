@@ -4,7 +4,7 @@ window.axios = require('axios');
 
 import Vue from 'vue';
 import App from '../js/App.vue';
-import router from '../js/router';
+import router from '../js/router.js';
 
 
 

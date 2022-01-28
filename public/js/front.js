@@ -1922,6 +1922,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "App",
   components: {
     Navbar: _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mounted: function mounted() {
+    console.log(this.$router);
+    console.log(this.$route);
   }
 });
 
@@ -3140,7 +3144,7 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(_vm.createDajsDate) + " "),
+          _vm._v(_vm._s(_vm.createDajsDate)),
         ]),
         _vm._v(" "),
         _c(
@@ -18737,7 +18741,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _js_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _js_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/router */ "./resources/js/router.js");
+/* harmony import */ var _js_router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/router.js */ "./resources/js/router.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.dayjs = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -18747,7 +18751,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('App', __webpack_require__(/*! ../js/App.vue */ "./resources/js/App.vue"));
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#root',
-  router: _js_router__WEBPACK_IMPORTED_MODULE_2__["default"],
+  router: _js_router_js__WEBPACK_IMPORTED_MODULE_2__["default"],
   render: function render(h) {
     return h(_js_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
   }

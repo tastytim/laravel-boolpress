@@ -1,5 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
+
 import Home from '../js/pages/Home.vue';
 import About from '../js/pages/About.vue';
 import Contact from '../js/pages/Contact.vue';

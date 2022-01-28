@@ -22,19 +22,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/admin/home', 'Admin/HomeController@index')->name('admin.home');
+Route::namespace("Admin")
+  ->prefix("admin")
+  ->name("admin.")
+  ->middleware("auth")
+  ->group(function () {
+    Route::get('/', 'HomeController@index');
 
-Route::middleware('auth')
-->namespace('Admin')
-->name('admin.')
-->prefix('admin')
-->group(function(){
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::resource('users', 'UserController');
-    Route::resource('posts', 'PostController');
-});
+    Route::resource("users", "UserController");
+    Route::resource("posts", "PostController");
+  });
 
 
-Route::get('{any?}',function(){
+
+
+Route::get('{path}',function(){
     return view('guest.home');
-})->where('any', '*');
+})->where('path', '[A-z\d\-\/_.]+');
