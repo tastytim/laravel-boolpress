@@ -5,9 +5,6 @@
                 <router-link class="nav-link px-lg-3 py-3 py-lg-4" to="/">
                     Home
                 </router-link>
-                <router-link class="nav-link px-lg-3 py-3 py-lg-4" to="/">
-                    Posts
-                </router-link>
                 <router-link class="nav-link px-lg-3 py-3 py-lg-4" to="/about">
                     About
                 </router-link>
@@ -38,7 +35,8 @@
                                 class="nav-link px-lg-3 py-3 py-lg-4"
                                 href="/login"
                             >
-                                <!-- {{ user.name ? user.name : "login" }} -->
+                                <!-- {{ user.name ? user.name : "Login" }} -->
+                                Login
                             </a>
                         </li>
                     </ul>
@@ -48,16 +46,19 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
     data() {
         return {
             user: {
                 type: Object,
+                required: true,
             },
         };
     },
     mounted() {
         // window.axios.get("/api/user").then((resp) => {
+        //     console.log(resp.data);
         //     this.user = resp.data;
         // });
     },

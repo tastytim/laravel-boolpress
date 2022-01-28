@@ -1940,6 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1987,17 +1989,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user: {
-        type: Object
+        type: Object,
+        required: true
       }
     };
   },
   mounted: function mounted() {// window.axios.get("/api/user").then((resp) => {
+    //     console.log(resp.data);
     //     this.user = resp.data;
     // });
   }
@@ -2112,6 +2115,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Post_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Post.vue */ "./resources/js/components/Post.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2795,15 +2807,6 @@ var render = function () {
             "router-link",
             {
               staticClass: "nav-link px-lg-3 py-3 py-lg-4",
-              attrs: { to: "/" },
-            },
-            [_vm._v("\n                Posts\n            ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "nav-link px-lg-3 py-3 py-lg-4",
               attrs: { to: "/about" },
             },
             [_vm._v("\n                About\n            ")]
@@ -2861,10 +2864,18 @@ var staticRenderFns = [
       [
         _c("ul", { staticClass: "navbar-nav d-flex me-auto mb-2 mb-lg-0" }, [
           _c("li", { staticClass: "nav-item" }, [
-            _c("a", {
-              staticClass: "nav-link px-lg-3 py-3 py-lg-4",
-              attrs: { href: "/login" },
-            }),
+            _c(
+              "a",
+              {
+                staticClass: "nav-link px-lg-3 py-3 py-lg-4",
+                attrs: { href: "/login" },
+              },
+              [
+                _vm._v(
+                  "\n                            Login\n                        "
+                ),
+              ]
+            ),
           ]),
         ]),
       ]
@@ -3036,72 +3047,101 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "container mt-3" },
-      _vm._l(_vm.postsData, function (post) {
-        return _c("Post", { key: post.id, attrs: { post: post } })
-      }),
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row py-5 d-flex justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "pagination" },
-        [
-          _vm.currentPage != 1
-            ? _c(
-                "button",
-                {
-                  staticClass: "page-link",
-                  on: {
-                    click: function ($event) {
-                      return _vm.getDates(_vm.currentPage - 1)
-                    },
-                  },
-                },
-                [_vm._v("\n                Prev\n            ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm._l(_vm.lastPage, function (page) {
-            return _c(
-              "button",
-              {
-                key: page,
-                staticClass: "page-link",
-                on: {
-                  click: function ($event) {
-                    return _vm.getDates(page)
-                  },
-                },
-              },
-              [_vm._v("\n                " + _vm._s(page) + "\n            ")]
-            )
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-8" }, [
+        _c(
+          "div",
+          { staticClass: "container mt-3" },
+          _vm._l(_vm.postsData, function (post) {
+            return _c("Post", { key: post.id, attrs: { post: post } })
           }),
-          _vm._v(" "),
-          _vm.currentPage != _vm.lastPage
-            ? _c(
-                "button",
-                {
-                  staticClass: "page-link",
-                  on: {
-                    click: function ($event) {
-                      return _vm.getDates(_vm.currentPage + 1)
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row py-5 d-flex justify-content-center" }, [
+          _c(
+            "div",
+            { staticClass: "pagination" },
+            [
+              _vm.currentPage != 1
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "page-link",
+                      on: {
+                        click: function ($event) {
+                          return _vm.getDates(_vm.currentPage - 1)
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Prev\n                    "
+                      ),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.lastPage, function (page) {
+                return _c(
+                  "button",
+                  {
+                    key: page,
+                    staticClass: "page-link",
+                    on: {
+                      click: function ($event) {
+                        return _vm.getDates(page)
+                      },
                     },
                   },
-                },
-                [_vm._v("\n                Next\n            ")]
-              )
-            : _vm._e(),
-        ],
-        2
-      ),
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(page) +
+                        "\n                    "
+                    ),
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _vm.currentPage != _vm.lastPage
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "page-link",
+                      on: {
+                        click: function ($event) {
+                          return _vm.getDates(_vm.currentPage + 1)
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Next\n                    "
+                      ),
+                    ]
+                  )
+                : _vm._e(),
+            ],
+            2
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4" }, [
+      _c("h1", [_vm._v("Categories")]),
+    ])
+  },
+]
 render._withStripped = true
 
 

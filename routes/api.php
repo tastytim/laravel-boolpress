@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,11 +18,15 @@ use Illuminate\Support\Facades\Auth;
 //     return $request->user();
 // });
 Route::middleware("auth")->get('/user', function () {
-    return response()->json(Auth::user());
+    $user = Auth::user();
+    return response()->json($user);
   });
 
 Route::get("/posts", "Api\PostController@index");
 Route::get("/posts/{slug}", "Api\PostController@show");
+
+Route::get("/categories", "Api\CategoryController@index");
+Route::get("/categories/{category}", "Api\CategoryController@show");
 
 
 

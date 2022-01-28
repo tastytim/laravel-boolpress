@@ -10971,3 +10971,7 @@ a.text-dark:focus {
   right: 5px;
 }
 
+.router-link-exact-active {
+  color: red;
+}
+
