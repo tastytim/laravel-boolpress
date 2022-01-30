@@ -24,6 +24,13 @@
                     <a class="nav-link" href="{{route("admin.posts.index")}}">
                         My Posts
                     </a>
+                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("admin.categories.index")}}">
+                        My Categories
+                    </a>
+                    
                 </li>
             </ul>
             <ul class="navbar-nav d-flex ml-auto mb-2 mb-lg-0">

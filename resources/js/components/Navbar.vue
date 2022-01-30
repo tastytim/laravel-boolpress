@@ -21,40 +21,40 @@
                 >
                     <!-- IF NOT LOGGED -->
                     <ul
-                        class="navbar-nav d-flex mr-auto mb-2 mb-lg-0"
+                        class="navbar-nav d-flex ml-auto mb-2 mb-lg-0"
                         v-if="!$userName"
                     >
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/register">
+                            <a class="nav-link" href="/register">
                                 Register
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/login">
+                            <a class="nav-link" href="/login">
                                 Login
-                            </router-link>
+                            </a>
                         </li>
                     </ul>
                     <!-- IF LOGGED -->
                     <ul class="navbar-nav d-flex mr-auto mb-2 mb-lg-0" v-else>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/admin/posts">
+                            <a class="nav-link" href="/admin/posts">
                                 My Posts
-                            </router-link>
+                            </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav d-flex ml-auto mb-2 mb-lg-0" v-if="$userName">
                         <li class="nav-item-dropdown">
-                            <router-link
+                            <a
                                 class="nav-link dropdown-toggle"
-                                to="#"
+                                href="#"
                                 id="navbarDropdown"
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
                                 {{ $userName }}
-                            </router-link>
+                            </a>
                             <div
                                 class="dropdown-menu"
                                 aria-labelledby="navbarDropdown"
@@ -62,37 +62,21 @@
                                 <a
                                     class="dropdown-item"
                                     href="#"
-                                    @onclick="
-                                        event.preventDefault();
-                                        document
-                                            .getElementById('logout-form')
-                                            .submit();
-                                    "
+                                    @click.prevent="logout"
                                 >
                                     Logout
                                 </a>
-                                <form
-                                    id="logout-form"
-                                    action="logout"
-                                    method="POST"
-                                    class="d-none"
-                                >
-                                    <input
-                                        type="hidden"
-                                        name="_token"
-                                        :value="this.$csrf_token"
-                                    />
-                                </form>
+                                
 
-                                <router-link class="dropdown-item" to="/admin">
+                                <a class="dropdown-item" href="/admin">
                                     Admin Profile
-                                </router-link>
-                                <router-link
+                                </a>
+                                <a
                                     class="dropdown-item"
-                                    to="/admin/posts"
+                                    href="/admin/posts"
                                 >
                                     My Posts
-                                </router-link>
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -104,18 +88,31 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
     },
     methods: {
-        submit: function () {
-            this.$refs.form.submit();
-        },
+            logout:function(){
+               axios.post('logout').then(response => {
+                  if (response.status === 302 || 401) {
+                    console.log('logout')
+                  }
+                  else {
+                    // throw error and go to catch block
+                  }
+                }).catch(error => {
+
+              });
+            }
+        
     },
 
     mounted() {
         console.log(this.$userName);
         console.log(this.$csrf_token);
     },
+    
 };
 </script>
 

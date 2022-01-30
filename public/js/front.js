@@ -2172,29 +2172,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
   },
   methods: {
-    submit: function submit() {
-      this.$refs.form.submit();
+    logout: function logout() {
+      axios.post('logout').then(function (response) {
+        if (response.status === 302 || 401) {
+          console.log('logout');
+        } else {// throw error and go to catch block
+        }
+      })["catch"](function (error) {});
     }
   },
   mounted: function mounted() {
@@ -2214,6 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2560,6 +2552,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3911,73 +3934,13 @@ var render = function () {
               !_vm.$userName
                 ? _c(
                     "ul",
-                    { staticClass: "navbar-nav d-flex mr-auto mb-2 mb-lg-0" },
-                    [
-                      _c(
-                        "li",
-                        { staticClass: "nav-item" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: "/register" },
-                            },
-                            [
-                              _vm._v(
-                                "\n                            Register\n                        "
-                              ),
-                            ]
-                          ),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        { staticClass: "nav-item" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: "/login" },
-                            },
-                            [
-                              _vm._v(
-                                "\n                            Login\n                        "
-                              ),
-                            ]
-                          ),
-                        ],
-                        1
-                      ),
-                    ]
+                    { staticClass: "navbar-nav d-flex ml-auto mb-2 mb-lg-0" },
+                    [_vm._m(0), _vm._v(" "), _vm._m(1)]
                   )
                 : _c(
                     "ul",
                     { staticClass: "navbar-nav d-flex mr-auto mb-2 mb-lg-0" },
-                    [
-                      _c(
-                        "li",
-                        { staticClass: "nav-item" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: "/admin/posts" },
-                            },
-                            [
-                              _vm._v(
-                                "\n                            My Posts\n                        "
-                              ),
-                            ]
-                          ),
-                        ],
-                        1
-                      ),
-                    ]
+                    [_vm._m(2)]
                   ),
               _vm._v(" "),
               _vm.$userName
@@ -3985,108 +3948,82 @@ var render = function () {
                     "ul",
                     { staticClass: "navbar-nav d-flex ml-auto mb-2 mb-lg-0" },
                     [
-                      _c(
-                        "li",
-                        { staticClass: "nav-item-dropdown" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link dropdown-toggle",
-                              attrs: {
-                                to: "#",
-                                id: "navbarDropdown",
-                                role: "button",
-                                "data-bs-toggle": "dropdown",
-                                "aria-expanded": "false",
+                      _c("li", { staticClass: "nav-item-dropdown" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link dropdown-toggle",
+                            attrs: {
+                              href: "#",
+                              id: "navbarDropdown",
+                              role: "button",
+                              "data-bs-toggle": "dropdown",
+                              "aria-expanded": "false",
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.$userName) +
+                                "\n                        "
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "dropdown-menu",
+                            attrs: { "aria-labelledby": "navbarDropdown" },
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.logout.apply(null, arguments)
+                                  },
+                                },
                               },
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.$userName) +
-                                  "\n                        "
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "dropdown-menu",
-                              attrs: { "aria-labelledby": "navbarDropdown" },
-                            },
-                            [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    onclick: function ($event) {
-                                      _vm.event.preventDefault()
-                                      _vm.document
-                                        .getElementById("logout-form")
-                                        .submit()
-                                    },
-                                  },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Logout\n                            "
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "form",
-                                {
-                                  staticClass: "d-none",
-                                  attrs: {
-                                    id: "logout-form",
-                                    action: "logout",
-                                    method: "POST",
-                                  },
-                                },
-                                [
-                                  _c("input", {
-                                    attrs: { type: "hidden", name: "_token" },
-                                    domProps: { value: this.$csrf_token },
-                                  }),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { to: "/admin" },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Admin Profile\n                            "
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { to: "/admin/posts" },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                My Posts\n                            "
-                                  ),
-                                ]
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
+                              [
+                                _vm._v(
+                                  "\n                                Logout\n                            "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "/admin" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Admin Profile\n                            "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "/admin/posts" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                My Posts\n                            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
                     ]
                   )
                 : _vm._e(),
@@ -4098,7 +4035,42 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/register" } }, [
+        _vm._v(
+          "\n                            Register\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/login" } }, [
+        _vm._v("\n                            Login\n                        "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/admin/posts" } }, [
+        _vm._v(
+          "\n                            My Posts\n                        "
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -4124,14 +4096,16 @@ var render = function () {
     "v-card",
     { staticClass: "mb-5" },
     [
-      _c("v-img", {
-        attrs: {
-          src: _vm.post.thumb,
-          onError:
-            "this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
-          "aspect-ratio": "2.75",
-        },
-      }),
+      _vm.post.thumb
+        ? _c("v-img", {
+            attrs: {
+              src: _vm.post.thumb,
+              onError:
+                "this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
+              "aspect-ratio": "2.75",
+            },
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c("v-card-title", { attrs: { "primary-title": "" } }, [
         _c("div", [
@@ -4412,54 +4386,62 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("img", {
-          staticClass: "width-100",
-          attrs: {
-            src: _vm.post.thumb,
-            onError:
-              "this.src = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
-          },
-        }),
-        _vm._v(" "),
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm.post.title)),
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v("Testo - " + _vm._s(_vm.post.body)),
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(_vm.createDajsDate)),
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex" },
-          _vm._l(_vm.post.tags, function (item) {
-            return _c(
-              "div",
-              {
-                key: item.id,
-                staticClass: "badge bg-dark text-white mr-3 fs-3",
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.name) +
-                    "\n                "
+  return _c(
+    "v-app",
+    [
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-card",
+            { staticClass: "mb-5" },
+            [
+              _c("v-img", {
+                attrs: {
+                  src: _vm.post.thumb,
+                  onError:
+                    "this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'",
+                  "aspect-ratio": "2.75",
+                },
+              }),
+              _vm._v(" "),
+              _c("v-card-title", { attrs: { "primary-title": "" } }, [
+                _c("div", [
+                  _c("h3", { staticClass: "headline mb-0" }, [
+                    _vm._v(_vm._s(_vm.post.title)),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(_vm.post.body))]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("v-layout", [
+                _c(
+                  "div",
+                  { staticClass: "text-center" },
+                  _vm._l(_vm.post.tags, function (item) {
+                    return _c(
+                      "v-chip",
+                      {
+                        key: item.id,
+                        staticClass: "ma-2",
+                        attrs: { color: "secondary" },
+                      },
+                      [_vm._v(_vm._s(item.name) + "\n            ")]
+                    )
+                  }),
+                  1
                 ),
-              ]
-            )
-          }),
-          0
-        ),
-      ]),
-    ]),
-  ])
+              ]),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
