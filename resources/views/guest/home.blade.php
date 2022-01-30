@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @if(Auth::check()) <meta name="user-name" content="{{ Auth::user()->name }}"> @endif
+    
+    <meta name="csrf-token" content="{{ csrf_token() }} ">
+   
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->
     <!-- Fonts -->
@@ -16,11 +19,12 @@
 </head>
 <body>
 
+
     <div id="root">
-        
+
     </div>
-<script src="{{ asset('js/front.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
-@include('partials.scripts')
+    <script src="{{ asset('js/front.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @include('partials.scripts')
 </body>
 </html>

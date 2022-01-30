@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,20 +15,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
 Route::middleware("auth")->get('/user', function () {
-    $user = Auth::user();
-    return response()->json($user);
-  });
+  return response()->json(Auth::user());
+});
 
 Route::get("/posts", "Api\PostController@index");
 Route::get("/posts/{slug}", "Api\PostController@show");
 
 Route::get("/categories", "Api\CategoryController@index");
 Route::get("/categories/{category}", "Api\CategoryController@show");
-
-
-
-

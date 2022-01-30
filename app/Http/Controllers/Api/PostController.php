@@ -15,6 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
+      
+      
         $postsList = Post::with("category")
             ->with("user:id,name")
             ->with("tags")->paginate(3);
