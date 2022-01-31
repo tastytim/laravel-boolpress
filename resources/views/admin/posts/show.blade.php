@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <h1>SHOW POSTS PAGE</h1>
         <div class="container">
-            <img class="width-100 heiht-50" src="{{$post->thumb}}">
+            <img class="width-100 heiht-50" src="{{asset("storage/" . $post->thumb)}}">
             <div>Titolo</div>
             <h2>{{$post->title}}</h2>
             <div>Testo</div>

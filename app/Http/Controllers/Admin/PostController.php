@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -67,8 +69,14 @@ class PostController extends Controller
         ]);
         $data = $request->all();
         $post = new Post();
+        $post->slug = $this->createSlug($data['title']);
         $post->fill($data);
         $post->user_id = Auth::user()->id;
+        if ($request->file('thumb')) {
+            $post->thumb = Storage::put('posts', $data['thumb']);
+        }
+
+
         $post->save();
         $post->tags()->sync($data["tags"]);
         return redirect()->route("admin.posts.index");
@@ -85,5 +93,24 @@ class PostController extends Controller
         //     "categories"=>$categories,
         //     "tags"=>$tags
         // ]);
+    }
+
+    public function createSlug($title)
+    {
+        $slug = Str::slug('$title');
+
+        $alreadyExists = Post::where("slug", $slug)->first();
+        $counter = 1;
+
+        while ($alreadyExists) {
+
+            $newSlug = $slug . "-" . $counter;
+            $alreadyExists = Post::where("slug", $newSlug)->first();
+            $counter++;
+            if (!$alreadyExists) {
+                $slug = $newSlug;
+            }
+        }
+        return $slug;
     }
 }

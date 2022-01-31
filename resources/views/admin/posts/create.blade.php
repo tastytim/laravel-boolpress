@@ -1,7 +1,7 @@
 @extends("layouts.default")
 @section("content")
 <div class="container">
-    <form action="{{ route("admin.posts.store") }}" method="post">
+    <form action="{{ route("admin.posts.store") }}" method="post" enctype='multipart/form-data' class="form-group" >
         @csrf
         <div class="mb-3">
             <div>
@@ -13,9 +13,9 @@
                 <textarea rows="10" type="text" class="form-control" name="body" id="body">
             </textarea>
             </div>
-            <div>
-                <label for="thumb" class="form-label">Url img</label>
-                <input type="text" class="form-control" name="thumb" id="thumb">
+            <div class="my-2">
+                <label for="thumb" class="form-label">Carica immagine</label>
+                <input type="file" class="form-control-file" name="thumb" id="thumb">
             </div>
             <div>
                 <label for="category_id" class="form-label">Category</label>
