@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-<form action="{{ route("admin.posts.update", $post->id) }}" method="post">
+<form action="{{ route("admin.posts.update", $post->id) }}" method="post" enctype='multipart/form-data' class="form-group">
     @csrf
     @method('patch')
 
@@ -22,8 +22,8 @@
             </textarea>
         </div>
         <div>
-                <label for="thumb" class="form-label">Url img</label>
-                <input type="text" class="form-control" name="thumb" id="thumb" value="{{$post->thumb}}">
+                <label for="thumb" class="form-label">Carica immagine</label>
+                <input type="file" class="form-control-file" name="thumb" id="thumb" value="{{$post->thumb}}">
 
             </div>
 

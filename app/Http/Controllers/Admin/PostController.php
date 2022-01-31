@@ -36,11 +36,24 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+
+        $oldTitle =$post->title;
+        $oldImg = $post->thumb;
         $data = $request->all();
         Validator::make($data, [
             "title" => "min:4",
         ])->validate();
-        $post->update($data);
+        $post->fill($data);
+        if ($request->file('thumb')) {
+            if ($oldImg) {
+                Storage::delete($oldImg);
+            }
+            $post->thumb = $request->file('thumb')->store('posts');
+        }
+        if($oldTitle !== $data["title"]){
+            $post->slug = $this->createSlug($data['title']);
+        }
+        $post->save();
         $post->tags()->sync($data["tags"]);
         return redirect()->route("admin.posts.show", $post->id)->with("msg", "Updated post successfully");
     }
