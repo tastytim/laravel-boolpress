@@ -25,35 +25,43 @@
         </div>
     </div> -->
     <v-app>
-        <v-container>
-    <v-card class="mb-5">
-        <v-img
-            :src="`../storage/`+post.thumb"
-            onError="this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'"
-            aspect-ratio="2.75"
-        ></v-img>
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="container">
+                    <v-card class="mb-5">
+                        <v-img
+                            :src="`../storage/` + post.thumb"
+                            onError="this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'"
+                            aspect-ratio="2.75"
+                        ></v-img>
 
-        <v-card-title primary-title>
-            <div>
-                <h3 class="headline mb-0">{{ post.title }}</h3>
-                <div>{{ post.body }}</div>
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">{{ post.title }}</h3>
+                                <div>{{ post.body }}</div>
+                            </div>
+                        </v-card-title>
+
+                        <v-layout>
+                            <div class="text-center">
+                                <v-chip
+                                    v-for="item in post.tags"
+                                    :key="item.id"
+                                    class="ma-2"
+                                    color="secondary"
+                                    >{{ item.name }}
+                                </v-chip>
+                            </div>
+                        </v-layout>
+                    </v-card>
+                </div>
             </div>
-        </v-card-title>
-
-        <v-layout >
-            <div class="text-center">
-                <v-chip
-                    v-for="item in post.tags"
-                    :key="item.id"
-                    class="ma-2"
-                    color="secondary"
-                    >{{ item.name }}
-                </v-chip>
-            </div>
-        </v-layout>
-
-    </v-card>
-        </v-container>
+            <div class="col-2"></div>
+        </div>
+        </div>
+        
     </v-app>
 </template>
 

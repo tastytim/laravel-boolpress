@@ -11,9 +11,10 @@
                     style="width: 100%"
                 ></div>
             </span>
-            <div class="row">
-                <div class="col-8">
-                    <div class="container mt-3">
+            <div class="row py-3">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="container">
                         <Post
                             v-for="post in postsData"
                             :key="post.id"
@@ -21,7 +22,7 @@
                         >
                         </Post>
                     </div>
-                    <div class="row py-5 d-flex justify-content-center">
+                    <div class="row d-flex justify-content-center">
                         <!-- PAGINATION VUETIFY -->
                         <v-pagination
                             v-model="pagination.current"
@@ -54,18 +55,23 @@
                         </v-pagination>
                     </div>
                 </div>
-                <div class="col-4">
-                    <h1>Categories</h1>
-
-                    <div v-for="category in categoriesData" :key="category.id">
-                        <router-link
-                            :to="{
-                                name: 'category.show',
-                                params: { category: category.id },
-                            }"
-                            >{{ category.name }}</router-link
-                        >
-                    </div>
+                <div class="col-3">
+                    <h1>Categorie</h1>
+                    <v-simple-table >
+                        <thead>
+                            <tr>
+                                <th class="text-left">Categoria</th>
+                                <th class="text-left">Posts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <Categories
+                                v-for="category in categoriesData"
+                                :key="category.id"
+                                :category="category"
+                            ></Categories>
+                        </tbody>
+                    </v-simple-table>
                 </div>
             </div>
         </div>
@@ -76,12 +82,14 @@
 <script>
 import Post from "../components/Post.vue";
 import Footer from "../components/Footer.vue";
+import Categories from "../components/Categories.vue";
 
 export default {
     name: "Home",
     components: {
         Post,
         Footer,
+        Categories,
     },
     data() {
         return {
@@ -123,8 +131,6 @@ export default {
         this.getDates();
         this.getCategories();
     },
-
-    
 };
 </script>
 

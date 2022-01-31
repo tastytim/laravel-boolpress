@@ -1,10 +1,10 @@
 <template>
-    <div class="container py-5 px-5 rounded">
+    <div class="container" >
         <div class="row">
             <div class="col-2"></div>
-            <div class="col-8">
-                <h2>Contatta</h2>
-                <v-app>
+            <div class="col-8 py-5 px-5 rounded">
+                <h2 class="text-center" collor="primary">Contatta</h2>
+                <v-app class="p-5" color:secondary text:white>
                     <v-alert v-if="submitted" type="success"> La mail è stata spedita. </v-alert>
                     <v-form v-else ref="form" v-model="valid" lazy-validation @submit.prevent="onSubmit">
                         <v-text-field
@@ -87,7 +87,7 @@ export default {
         ],
         
         emailRules: [
-            (v) => !!v || "E-mail is required",
+            (v) => !!v || "E-mail richiesto",
             (v) => /.+@.+\..+/.test(v) || "E-mail deve essere valido",
         ],
         
