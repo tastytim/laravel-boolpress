@@ -2172,6 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2397,7 +2398,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      valid: true,
+      name: "",
+      nameRules: [function (v) {
+        return !!v || "Name is required";
+      }, function (v) {
+        return v && v.length <= 10 || "Name must be less than 10 characters";
+      }],
+      email: "",
+      emailRules: [function (v) {
+        return !!v || "E-mail is required";
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || "E-mail must be valid";
+      }],
+      select: null,
+      checkbox: false
+    };
+  },
+  methods: {
+    validate: function validate() {
+      this.$refs.form.validate();
+    },
+    reset: function reset() {
+      this.$refs.form.reset();
+    }
+  }
+});
 
 /***/ }),
 
@@ -3909,6 +3997,12 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c(
+            "router-link",
+            { staticClass: "mx-2 nav-item", attrs: { to: "/contact" } },
+            [_vm._v(" Contact ")]
+          ),
+          _vm._v(" "),
+          _c(
             "v-btn",
             {
               staticClass: "navbar-toggler",
@@ -4239,7 +4333,159 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_vm._v("\n    Contact\n")])
+  return _c("div", { staticClass: "container py-5 px-5 rounded" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-2" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-8" },
+        [
+          _c("h2", [_vm._v("Contatta")]),
+          _vm._v(" "),
+          _c(
+            "v-app",
+            [
+              _c(
+                "v-form",
+                {
+                  ref: "form",
+                  attrs: { "lazy-validation": "" },
+                  model: {
+                    value: _vm.valid,
+                    callback: function ($$v) {
+                      _vm.valid = $$v
+                    },
+                    expression: "valid",
+                  },
+                },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      counter: 2,
+                      rules: _vm.nameRules,
+                      label: "Nome",
+                      required: "",
+                    },
+                    model: {
+                      value: _vm.name,
+                      callback: function ($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      counter: 2,
+                      rules: _vm.cognomeRules,
+                      label: "Cognome",
+                      required: "",
+                    },
+                    model: {
+                      value: _vm.cognome,
+                      callback: function ($$v) {
+                        _vm.cognome = $$v
+                      },
+                      expression: "cognome",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.emailRules,
+                      label: "E-mail",
+                      required: "",
+                    },
+                    model: {
+                      value: _vm.email,
+                      callback: function ($$v) {
+                        _vm.email = $$v
+                      },
+                      expression: "email",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("v-textarea", {
+                    attrs: {
+                      items: _vm.items,
+                      rules: [
+                        function (v) {
+                          return !!v || "Inserisci il testo"
+                        },
+                      ],
+                      label: "Testo",
+                      required: "",
+                    },
+                    model: {
+                      value: _vm.select,
+                      callback: function ($$v) {
+                        _vm.select = $$v
+                      },
+                      expression: "select",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("v-checkbox", {
+                    attrs: {
+                      rules: [
+                        function (v) {
+                          return !!v || "Accettare per poter spedire"
+                        },
+                      ],
+                      label: "Do you agree?",
+                      required: "",
+                    },
+                    model: {
+                      value: _vm.checkbox,
+                      callback: function ($$v) {
+                        _vm.checkbox = $$v
+                      },
+                      expression: "checkbox",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "mr-4",
+                      attrs: { disabled: !_vm.valid, color: "success" },
+                      on: { click: _vm.validate },
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Spedire\n                    "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "mr-4",
+                      attrs: { color: "error" },
+                      on: { click: _vm.reset },
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Resetta tutto\n                    "
+                      ),
+                    ]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

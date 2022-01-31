@@ -3,6 +3,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <router-link class="nav-brand" to="/"> Home </router-link>
+                <router-link class="mx-2 nav-item" to="/contact"> Contact </router-link>
 
                 <v-btn
                     class="navbar-toggler"
