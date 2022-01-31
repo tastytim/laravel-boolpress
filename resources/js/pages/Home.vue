@@ -99,11 +99,13 @@ export default {
 
     methods: {
         getDates() {
-            axios.get("/api/posts?page=" + this.pagination.current).then((resp) => {
-                this.postsData = resp.data.data;
-                this.pagination.current = resp.data.current_page;
-                this.pagination.total = resp.data.last_page;
-            });
+            axios
+                .get("/api/posts?page=" + this.pagination.current)
+                .then((resp) => {
+                    this.postsData = resp.data.data;
+                    this.pagination.current = resp.data.current_page;
+                    this.pagination.total = resp.data.last_page;
+                });
         },
 
         getCategories() {
@@ -121,6 +123,8 @@ export default {
         this.getDates();
         this.getCategories();
     },
+
+    
 };
 </script>
 

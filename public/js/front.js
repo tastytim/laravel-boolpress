@@ -2457,32 +2457,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       valid: true,
-      name: "",
+      form: {
+        nome: "",
+        cognome: "",
+        formtext: "",
+        email: ""
+      },
       nameRules: [function (v) {
-        return !!v || "Name is required";
+        return !!v || "Nome richiesto";
       }, function (v) {
-        return v && v.length <= 10 || "Name must be less than 10 characters";
+        return v && v.length <= 10 || "Nome non puo essere campo vuoto";
       }],
-      email: "",
+      cognomeRules: [function (v) {
+        return !!v || "Cognome richiesto";
+      }, function (v) {
+        return v && v.length <= 10 || "Cognome non puo essere campo vuoto";
+      }],
       emailRules: [function (v) {
         return !!v || "E-mail is required";
       }, function (v) {
-        return /.+@.+\..+/.test(v) || "E-mail must be valid";
+        return /.+@.+\..+/.test(v) || "E-mail deve essere valido";
       }],
-      select: null,
-      checkbox: false
+      checkbox: false,
+      submitted: false
     };
   },
   methods: {
     validate: function validate() {
-      this.$refs.form.validate();
+      this.onSubmit();
     },
     reset: function reset() {
       this.$refs.form.reset();
+    },
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      window.axios.post('/api/contacts', this.form).then(function (resp) {
+        _this.submitted = true;
+      });
     }
   }
 });
@@ -4346,136 +4363,145 @@ var render = function () {
           _c(
             "v-app",
             [
-              _c(
-                "v-form",
-                {
-                  ref: "form",
-                  attrs: { "lazy-validation": "" },
-                  model: {
-                    value: _vm.valid,
-                    callback: function ($$v) {
-                      _vm.valid = $$v
-                    },
-                    expression: "valid",
-                  },
-                },
-                [
-                  _c("v-text-field", {
-                    attrs: {
-                      counter: 2,
-                      rules: _vm.nameRules,
-                      label: "Nome",
-                      required: "",
-                    },
-                    model: {
-                      value: _vm.name,
-                      callback: function ($$v) {
-                        _vm.name = $$v
-                      },
-                      expression: "name",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("v-text-field", {
-                    attrs: {
-                      counter: 2,
-                      rules: _vm.cognomeRules,
-                      label: "Cognome",
-                      required: "",
-                    },
-                    model: {
-                      value: _vm.cognome,
-                      callback: function ($$v) {
-                        _vm.cognome = $$v
-                      },
-                      expression: "cognome",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("v-text-field", {
-                    attrs: {
-                      rules: _vm.emailRules,
-                      label: "E-mail",
-                      required: "",
-                    },
-                    model: {
-                      value: _vm.email,
-                      callback: function ($$v) {
-                        _vm.email = $$v
-                      },
-                      expression: "email",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("v-textarea", {
-                    attrs: {
-                      items: _vm.items,
-                      rules: [
-                        function (v) {
-                          return !!v || "Inserisci il testo"
-                        },
-                      ],
-                      label: "Testo",
-                      required: "",
-                    },
-                    model: {
-                      value: _vm.select,
-                      callback: function ($$v) {
-                        _vm.select = $$v
-                      },
-                      expression: "select",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("v-checkbox", {
-                    attrs: {
-                      rules: [
-                        function (v) {
-                          return !!v || "Accettare per poter spedire"
-                        },
-                      ],
-                      label: "Do you agree?",
-                      required: "",
-                    },
-                    model: {
-                      value: _vm.checkbox,
-                      callback: function ($$v) {
-                        _vm.checkbox = $$v
-                      },
-                      expression: "checkbox",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
+              _vm.submitted
+                ? _c("v-alert", { attrs: { type: "success" } }, [
+                    _vm._v(" La mail è stata spedita. "),
+                  ])
+                : _c(
+                    "v-form",
                     {
-                      staticClass: "mr-4",
-                      attrs: { disabled: !_vm.valid, color: "success" },
-                      on: { click: _vm.validate },
+                      ref: "form",
+                      attrs: { "lazy-validation": "" },
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.onSubmit.apply(null, arguments)
+                        },
+                      },
+                      model: {
+                        value: _vm.valid,
+                        callback: function ($$v) {
+                          _vm.valid = $$v
+                        },
+                        expression: "valid",
+                      },
                     },
                     [
-                      _vm._v(
-                        "\n                        Spedire\n                    "
+                      _c("v-text-field", {
+                        attrs: {
+                          counter: 2,
+                          rules: _vm.nameRules,
+                          label: "Nome",
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.form.nome,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "nome", $$v)
+                          },
+                          expression: "form.nome",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          counter: 2,
+                          rules: _vm.cognomeRules,
+                          label: "Cognome",
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.form.cognome,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "cognome", $$v)
+                          },
+                          expression: "form.cognome",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          rules: _vm.emailRules,
+                          label: "E-mail",
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.form.email,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "email", $$v)
+                          },
+                          expression: "form.email",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("v-textarea", {
+                        attrs: {
+                          rules: [
+                            function (v) {
+                              return !!v || "Inserisci il testo"
+                            },
+                          ],
+                          label: "Testo",
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.form.formtext,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "formtext", $$v)
+                          },
+                          expression: "form.formtext",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("v-checkbox", {
+                        attrs: {
+                          rules: [
+                            function (v) {
+                              return !!v || "Accettare per poter spedire"
+                            },
+                          ],
+                          label: "Accetta",
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.checkbox,
+                          callback: function ($$v) {
+                            _vm.checkbox = $$v
+                          },
+                          expression: "checkbox",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mr-4",
+                          attrs: { disabled: !_vm.valid, color: "success" },
+                          on: { click: _vm.validate },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Spedire\n                    "
+                          ),
+                        ]
                       ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "mr-4",
-                      attrs: { color: "error" },
-                      on: { click: _vm.reset },
-                    },
-                    [
-                      _vm._v(
-                        "\n                        Resetta tutto\n                    "
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mr-4",
+                          attrs: { color: "error" },
+                          on: { click: _vm.reset },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Resetta tutto\n                    "
+                          ),
+                        ]
                       ),
-                    ]
+                    ],
+                    1
                   ),
-                ],
-                1
-              ),
             ],
             1
           ),

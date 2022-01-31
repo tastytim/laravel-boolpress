@@ -17,10 +17,10 @@ class PostController extends Controller
     {
       
       
-        $postsList = Post::with("category")
+        $postsList = Post::orderBy('created_at', 'desc')->with("category")
             ->with("user:id,name")
             ->with("tags")->paginate(3);
-
+            
         return response()->json($postsList);
     }
 

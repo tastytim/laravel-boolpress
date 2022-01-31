@@ -5,16 +5,17 @@
             <div class="col-8">
                 <h2>Contatta</h2>
                 <v-app>
-                    <v-form ref="form" v-model="valid" lazy-validation>
+                    <v-alert v-if="submitted" type="success"> La mail è stata spedita. </v-alert>
+                    <v-form v-else ref="form" v-model="valid" lazy-validation @submit.prevent="onSubmit">
                         <v-text-field
-                            v-model="name"
+                            v-model="form.nome"
                             :counter="2"
                             :rules="nameRules"
                             label="Nome"
                             required
                         ></v-text-field>
                         <v-text-field
-                            v-model="cognome"
+                            v-model="form.cognome"
                             :counter="2"
                             :rules="cognomeRules"
                             label="Cognome"
@@ -22,15 +23,15 @@
                         ></v-text-field>
 
                         <v-text-field
-                            v-model="email"
+                            v-model="form.email"
                             :rules="emailRules"
                             label="E-mail"
                             required
                         ></v-text-field>
 
                         <v-textarea
-                            v-model="select"
-                            :items="items"
+                            v-model="form.formtext"
+                           
                             :rules="[(v) => !!v || 'Inserisci il testo']"
                             label="Testo"
                             required
@@ -41,7 +42,7 @@
                             :rules="[
                                 (v) => !!v || 'Accettare per poter spedire',
                             ]"
-                            label="Do you agree?"
+                            label="Accetta"
                             required
                         ></v-checkbox>
 
@@ -69,28 +70,48 @@
 export default {
     data: () => ({
         valid: true,
-        name: "",
-        nameRules: [
-            (v) => !!v || "Name is required",
-            (v) =>
-                (v && v.length <= 10) || "Name must be less than 10 characters",
-        ],
+        form:{
+            nome: "",
+        cognome: "",
+        formtext:"",
         email: "",
+        },
+        
+        nameRules: [
+            (v) => !!v || "Nome richiesto",
+            (v) => (v && v.length <= 10) || "Nome non puo essere campo vuoto",
+        ],
+        cognomeRules: [
+            (v) => !!v || "Cognome richiesto",
+            (v) => (v && v.length <= 10) || "Cognome non puo essere campo vuoto",
+        ],
+        
         emailRules: [
             (v) => !!v || "E-mail is required",
-            (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+            (v) => /.+@.+\..+/.test(v) || "E-mail deve essere valido",
         ],
-        select: null,
+        
         checkbox: false,
+        submitted: false,
     }),
 
     methods: {
         validate() {
-            this.$refs.form.validate();
+            
+            this.onSubmit();
+            
         },
         reset() {
             this.$refs.form.reset();
         },
+        onSubmit(){
+            window.axios.post('/api/contacts', this.form).then((resp)=>{
+                this.submitted = true;
+            });
+            
+        }
+
+
     },
 };
 </script>
