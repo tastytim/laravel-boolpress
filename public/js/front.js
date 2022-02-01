@@ -2226,18 +2226,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      axios.post('logout').then(function (response) {
-        if (response.status === 302 || 401) {
-          console.log('logout');
-        } else {// throw error and go to catch block
-        }
-      })["catch"](function (error) {});
+      var _this = this;
+
+      axios.post('logout').then(function (resp) {
+        _this.$router.go(0);
+      });
     }
   },
-  mounted: function mounted() {
-    console.log(this.$userName);
-    console.log(this.$csrf_token);
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),

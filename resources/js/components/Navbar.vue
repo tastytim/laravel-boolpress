@@ -95,23 +95,16 @@ export default {
     },
     methods: {
             logout:function(){
-               axios.post('logout').then(response => {
-                  if (response.status === 302 || 401) {
-                    console.log('logout')
-                  }
-                  else {
-                    // throw error and go to catch block
-                  }
-                }).catch(error => {
-
-              });
+               axios.post('logout').then((resp)=>{
+                   this.$router.go(0);
+               })
+               
             }
         
     },
 
     mounted() {
-        console.log(this.$userName);
-        console.log(this.$csrf_token);
+        
     },
     
 };

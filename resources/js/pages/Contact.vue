@@ -107,11 +107,8 @@ export default {
         onSubmit(){
             window.axios.post('/api/contacts', this.form).then((resp)=>{
                 this.submitted = true;
-            });
-            
+            });  
         }
-
-
     },
 };
 </script>
