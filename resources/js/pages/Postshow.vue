@@ -27,48 +27,63 @@
     <v-app>
         <div class="container-fluid">
             <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <div class="container">
-                    <v-card class="mb-5">
-                        <v-img
-                            :src="`../storage/` + post.thumb"
-                            onError="this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'"
-                            aspect-ratio="2.75"
-                        ></v-img>
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="container">
+                        <v-card class="mb-5">
+                            <v-img
+                                :src="`../storage/` + post.thumb"
+                                onError="this.src= 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'"
+                                aspect-ratio="2.75"
+                            ></v-img>
 
-                        <v-card-title primary-title>
-                            <div>
-                                <h3 class="headline mb-0">{{ post.title }}</h3>
-                                <div>{{ post.body }}</div>
-                            </div>
-                        </v-card-title>
+                            <v-card-title primary-title>
+                                <div>
+                                    <h3 class="headline mb-0">
+                                        {{ post.title }}
+                                    </h3>
+                                    <div>{{ post.body }}</div>
+                                </div>
+                            </v-card-title>
 
-                        <v-layout>
-                            <div class="text-center">
-                                <v-chip
-                                    v-for="item in post.tags"
-                                    :key="item.id"
-                                    class="ma-2"
-                                    color="secondary"
-                                    >{{ item.name }}
-                                </v-chip>
-                            </div>
-                        </v-layout>
-                    </v-card>
+                            <v-layout>
+                                <div class="text-center">
+                                    <v-chip
+                                        v-for="item in post.tags"
+                                        :key="item.id"
+                                        class="ma-2"
+                                        color="secondary"
+                                        >{{ item.name }}
+                                    </v-chip>
+                                </div>
+                            </v-layout>
+                        </v-card>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Visite</h2>
+                    <Chart></Chart>
+                </div>
+                <div class="col">
+                    <h2></h2>
+                    <Chart>Messaggi</Chart>
                 </div>
             </div>
-            <div class="col-2"></div>
         </div>
-        </div>
-        
     </v-app>
 </template>
 
 <script>
 import axios from "axios";
 import dayjs from "dayjs";
+import Chart from "../components/Chart.vue";
 export default {
+    components: { Chart },
     data() {
         return {
             post: {
